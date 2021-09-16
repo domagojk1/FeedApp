@@ -15,12 +15,10 @@ import RxBlocking
 
 class FeedDataSourceTests: XCTestCase {
 
-    private var scheduler: TestScheduler!
     private var bag: DisposeBag!
 
     override func setUp() {
         bag = DisposeBag()
-        scheduler = TestScheduler(initialClock: 0)
     }
 
     func testFeedFetchFailsWhenBadURL() {

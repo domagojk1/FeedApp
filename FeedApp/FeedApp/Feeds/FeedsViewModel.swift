@@ -20,11 +20,13 @@ final class FeedsViewModel {
     private let feedsDataSource: FeedsDataSource
     private let disposeBag = DisposeBag()
 
-    init(feedsDataSource: FeedsDataSource, coordinator: FeedsCoordinator) {
+    init(feedsDataSource: FeedsDataSource,
+         coordinator: FeedsCoordinator,
+         rssFeeds: [RSSFeed] = RSSFeed.all) {
         self.feedsDataSource = feedsDataSource
         self.coordinator = coordinator
 
-        let feedsSource = RSSFeed.all.map { feedsDataSource.load(feed: $0) }
+        let feedsSource = rssFeeds.map { feedsDataSource.load(feed: $0) }
         feeds = Single.zip(feedsSource).asDriver(onErrorJustReturn: [])
 
         feedSelectionPublisher
