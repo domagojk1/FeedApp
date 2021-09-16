@@ -16,7 +16,8 @@ class FeedsCoordinator: Coordinator {
     }
 
     func start() {
-        let viewModel = FeedsViewModel(feedsDataSource: FeedsDataSource(), coordinator: self)
+        let viewModel = FeedsViewModel(feedsDataSource: FeedsDataSource(rssFetcher: RSSFetcher()),
+                                       coordinator: self)
         let feedsVC = FeedsViewController(viewModel: viewModel)
         navigationController.pushViewController(feedsVC, animated: false)
     }

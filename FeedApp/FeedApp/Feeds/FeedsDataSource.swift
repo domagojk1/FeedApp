@@ -11,33 +11,28 @@ import FeedKit
 
 final class FeedsDataSource {
 
-    func load(feeds: [RSSFeed]) -> Single<[FeedModel]> {
-        let feeds = feeds.map { load(feed: $0) }
-        return Single.zip(feeds)
+    private let rssFetcher: RSSFetchable
+
+    init(rssFetcher: RSSFetchable) {
+        self.rssFetcher = rssFetcher
     }
 
     func load(feed: RSSFeed) -> Single<FeedModel> {
-        Single.create { single in
-            guard let url = URL(string: feed.rawValue) else {
+        Single.create { [weak self] single in
+            guard let self = self else {
+                single(.failure(FeedError.failedToParseRSS))
+                return Disposables.create()
+            }
+
+            guard let url = self.rssFetcher.validURL(for: feed) else {
                 single(.failure(FeedError.failedToLoadURL))
                 return Disposables.create()
             }
 
-            let parser = FeedParser(URL: url)
-            parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
+            self.rssFetcher.fetchFeed(from: url) { result in
                 switch (result) {
                 case .success(let feed):
-                    if let rssFeed = feed.rssFeed {
-                        let items = rssFeed.items?.map { FeedItem(title: $0.title, link: $0.link, description: $0.description) }
-                        let model = FeedModel(title: rssFeed.title,
-                                              description: rssFeed.description,
-                                              imageLink: rssFeed.image?.url,
-                                              link: rssFeed.link,
-                                              items: items)
-                        single(.success(model))
-                    } else {
-                        single(.failure(FeedError.failedToParseRSS))
-                    }
+                    single(.success(feed))
                 case .failure(let error):
                     single(.failure(error))
                 }

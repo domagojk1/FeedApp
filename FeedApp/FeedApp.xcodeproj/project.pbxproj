@@ -14,12 +14,14 @@
 		5203D69126F3821800DC6D4E /* FeedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D69026F3821800DC6D4E /* FeedItemTableViewCell.swift */; };
 		5203D69326F3853700DC6D4E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D69226F3853700DC6D4E /* WebViewController.swift */; };
 		5203D69626F3863000DC6D4E /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D69526F3863000DC6D4E /* WebViewModel.swift */; };
+		5203D69826F38E0A00DC6D4E /* RSSFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D69726F38E0A00DC6D4E /* RSSFetcher.swift */; };
+		5203D69B26F3921500DC6D4E /* RSSFetcherMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D69A26F3921500DC6D4E /* RSSFetcherMock.swift */; };
+		5203D69D26F3A1A800DC6D4E /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D69C26F3A1A800DC6D4E /* FeedViewModelTests.swift */; };
 		52E6104726F25AF800033619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6104626F25AF800033619 /* AppDelegate.swift */; };
 		52E6104926F25AF800033619 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6104826F25AF800033619 /* SceneDelegate.swift */; };
 		52E6105026F25AF900033619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E6104F26F25AF900033619 /* Assets.xcassets */; };
 		52E6105326F25AF900033619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6105126F25AF900033619 /* LaunchScreen.storyboard */; };
-		52E6105E26F25AF900033619 /* FeedAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6105D26F25AF900033619 /* FeedAppTests.swift */; };
-		52E6106926F25AF900033619 /* FeedAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6106826F25AF900033619 /* FeedAppUITests.swift */; };
+		52E6105E26F25AF900033619 /* FeedDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6105D26F25AF900033619 /* FeedDataSourceTests.swift */; };
 		52E6107826F25B6300033619 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 52E6107726F25B6300033619 /* FeedKit */; };
 		52E6108626F25FA800033619 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52E6108526F25FA800033619 /* RxSwift */; };
 		52E6108826F25FA800033619 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 52E6108726F25FA800033619 /* RxTest */; };
@@ -48,13 +50,6 @@
 			remoteGlobalIDString = 52E6104226F25AF800033619;
 			remoteInfo = FeedApp;
 		};
-		52E6106526F25AF900033619 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52E6103B26F25AF800033619 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52E6104226F25AF800033619;
-			remoteInfo = FeedApp;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +59,9 @@
 		5203D69026F3821800DC6D4E /* FeedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemTableViewCell.swift; sourceTree = "<group>"; };
 		5203D69226F3853700DC6D4E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5203D69526F3863000DC6D4E /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		5203D69726F38E0A00DC6D4E /* RSSFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFetcher.swift; sourceTree = "<group>"; };
+		5203D69A26F3921500DC6D4E /* RSSFetcherMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFetcherMock.swift; sourceTree = "<group>"; };
+		5203D69C26F3A1A800DC6D4E /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		52E6104326F25AF800033619 /* FeedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6104626F25AF800033619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E6104826F25AF800033619 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,11 +69,8 @@
 		52E6105226F25AF900033619 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E6105426F25AF900033619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52E6105926F25AF900033619 /* FeedAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		52E6105D26F25AF900033619 /* FeedAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAppTests.swift; sourceTree = "<group>"; };
+		52E6105D26F25AF900033619 /* FeedDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSourceTests.swift; sourceTree = "<group>"; };
 		52E6105F26F25AF900033619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52E6106426F25AF900033619 /* FeedAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		52E6106826F25AF900033619 /* FeedAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAppUITests.swift; sourceTree = "<group>"; };
-		52E6106A26F25AF900033619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52E6108F26F2609600033619 /* FeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewController.swift; sourceTree = "<group>"; };
 		52E6109826F262D100033619 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
 		52E6109A26F2662000033619 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
@@ -112,13 +107,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52E6106126F25AF900033619 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -142,12 +130,19 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		5203D69926F3920300DC6D4E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				5203D69A26F3921500DC6D4E /* RSSFetcherMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		52E6103A26F25AF800033619 = {
 			isa = PBXGroup;
 			children = (
 				52E6104526F25AF800033619 /* FeedApp */,
 				52E6105C26F25AF900033619 /* FeedAppTests */,
-				52E6106726F25AF900033619 /* FeedAppUITests */,
 				52E6104426F25AF800033619 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,7 +152,6 @@
 			children = (
 				52E6104326F25AF800033619 /* FeedApp.app */,
 				52E6105926F25AF900033619 /* FeedAppTests.xctest */,
-				52E6106426F25AF900033619 /* FeedAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,26 +175,20 @@
 		52E6105C26F25AF900033619 /* FeedAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				52E6105D26F25AF900033619 /* FeedAppTests.swift */,
+				5203D69926F3920300DC6D4E /* Mocks */,
+				52E6105D26F25AF900033619 /* FeedDataSourceTests.swift */,
+				5203D69C26F3A1A800DC6D4E /* FeedViewModelTests.swift */,
 				52E6105F26F25AF900033619 /* Info.plist */,
 			);
 			path = FeedAppTests;
 			sourceTree = "<group>";
 		};
-		52E6106726F25AF900033619 /* FeedAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				52E6106826F25AF900033619 /* FeedAppUITests.swift */,
-				52E6106A26F25AF900033619 /* Info.plist */,
-			);
-			path = FeedAppUITests;
-			sourceTree = "<group>";
-		};
 		52E6109426F2611100033619 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
-				52E610B226F270B000033619 /* FeedsCoordinator.swift */,
+				5203D69726F38E0A00DC6D4E /* RSSFetcher.swift */,
 				52E610B426F27D9B00033619 /* FeedsDataSource.swift */,
+				52E610B226F270B000033619 /* FeedsCoordinator.swift */,
 				52E6109826F262D100033619 /* FeedsViewModel.swift */,
 				52E610B826F2834500033619 /* RSSFeedTableViewCell.swift */,
 				52E6108F26F2609600033619 /* FeedsViewController.swift */,
@@ -295,24 +283,6 @@
 			productReference = 52E6105926F25AF900033619 /* FeedAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		52E6106326F25AF900033619 /* FeedAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 52E6107326F25AF900033619 /* Build configuration list for PBXNativeTarget "FeedAppUITests" */;
-			buildPhases = (
-				52E6106026F25AF900033619 /* Sources */,
-				52E6106126F25AF900033619 /* Frameworks */,
-				52E6106226F25AF900033619 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				52E6106626F25AF900033619 /* PBXTargetDependency */,
-			);
-			name = FeedAppUITests;
-			productName = FeedAppUITests;
-			productReference = 52E6106426F25AF900033619 /* FeedAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -326,10 +296,6 @@
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					52E6105826F25AF900033619 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 52E6104226F25AF800033619;
-					};
-					52E6106326F25AF900033619 = {
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = 52E6104226F25AF800033619;
 					};
@@ -357,7 +323,6 @@
 			targets = (
 				52E6104226F25AF800033619 /* FeedApp */,
 				52E6105826F25AF900033619 /* FeedAppTests */,
-				52E6106326F25AF900033619 /* FeedAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -373,13 +338,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		52E6105726F25AF900033619 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52E6106226F25AF900033619 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -405,6 +363,7 @@
 				52E610B326F270B000033619 /* FeedsCoordinator.swift in Sources */,
 				52E610A826F269AC00033619 /* FeedModel.swift in Sources */,
 				5203D69126F3821800DC6D4E /* FeedItemTableViewCell.swift in Sources */,
+				5203D69826F38E0A00DC6D4E /* RSSFetcher.swift in Sources */,
 				52E610B726F280B400033619 /* UIView+Extension.swift in Sources */,
 				52E6109026F2609600033619 /* FeedsViewController.swift in Sources */,
 				52E6109926F262D100033619 /* FeedsViewModel.swift in Sources */,
@@ -418,15 +377,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52E6105E26F25AF900033619 /* FeedAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52E6106026F25AF900033619 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52E6106926F25AF900033619 /* FeedAppUITests.swift in Sources */,
+				5203D69B26F3921500DC6D4E /* RSSFetcherMock.swift in Sources */,
+				5203D69D26F3A1A800DC6D4E /* FeedViewModelTests.swift in Sources */,
+				52E6105E26F25AF900033619 /* FeedDataSourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,11 +390,6 @@
 			isa = PBXTargetDependency;
 			target = 52E6104226F25AF800033619 /* FeedApp */;
 			targetProxy = 52E6105A26F25AF900033619 /* PBXContainerItemProxy */;
-		};
-		52E6106626F25AF900033619 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52E6104226F25AF800033619 /* FeedApp */;
-			targetProxy = 52E6106526F25AF900033619 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -657,46 +605,6 @@
 			};
 			name = Release;
 		};
-		52E6107426F25AF900033619 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4GAM69CJ8Z;
-				INFOPLIST_FILE = FeedAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dkopic.feed.app.FeedAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FeedApp;
-			};
-			name = Debug;
-		};
-		52E6107526F25AF900033619 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4GAM69CJ8Z;
-				INFOPLIST_FILE = FeedAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dkopic.feed.app.FeedAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FeedApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -723,15 +631,6 @@
 			buildConfigurations = (
 				52E6107126F25AF900033619 /* Debug */,
 				52E6107226F25AF900033619 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		52E6107326F25AF900033619 /* Build configuration list for PBXNativeTarget "FeedAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				52E6107426F25AF900033619 /* Debug */,
-				52E6107526F25AF900033619 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

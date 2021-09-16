@@ -24,7 +24,8 @@ final class FeedsViewModel {
         self.feedsDataSource = feedsDataSource
         self.coordinator = coordinator
 
-        feeds = feedsDataSource.load(feeds: RSSFeed.allCases).asDriver(onErrorJustReturn: [])
+        let feedsSource = RSSFeed.all.map { feedsDataSource.load(feed: $0) }
+        feeds = Single.zip(feedsSource).asDriver(onErrorJustReturn: [])
 
         feedSelectionPublisher
             .asDriver(onErrorDriveWith: .empty())
