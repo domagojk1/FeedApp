@@ -28,10 +28,13 @@ final class FeedsDataSource {
                 switch (result) {
                 case .success(let feed):
                     if let rssFeed = feed.rssFeed {
-                        single(.success(FeedModel(title: rssFeed.title,
-                                                  description: rssFeed.description,
-                                                  imageLink: rssFeed.image?.url,
-                                                  link: rssFeed.link)))
+                        let items = rssFeed.items?.map { FeedItem(title: $0.title, link: $0.link, description: $0.description) }
+                        let model = FeedModel(title: rssFeed.title,
+                                              description: rssFeed.description,
+                                              imageLink: rssFeed.image?.url,
+                                              link: rssFeed.link,
+                                              items: items)
+                        single(.success(model))
                     } else {
                         single(.failure(FeedError.failedToParseRSS))
                     }

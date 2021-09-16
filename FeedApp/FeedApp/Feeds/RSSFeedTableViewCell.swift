@@ -9,11 +9,10 @@ import UIKit
 import SnapKit
 import Nuke
 
-final class FeedTableViewCell: UITableViewCell {
+final class RSSFeedTableViewCell: UITableViewCell {
 
     private lazy var feedImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -21,8 +20,7 @@ final class FeedTableViewCell: UITableViewCell {
     private lazy var feedTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .black
+        label.font = .preferredFont(forTextStyle: .headline)
         label.textAlignment = .left
         return label
     }()
@@ -30,8 +28,7 @@ final class FeedTableViewCell: UITableViewCell {
     private lazy var feedDescriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 5
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .black
+        label.font = .preferredFont(forTextStyle: .subheadline)
         label.textAlignment = .left
         return label
     }()
@@ -75,7 +72,6 @@ final class FeedTableViewCell: UITableViewCell {
     }
 
     private func configureUI() {
-        backgroundColor = .white
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = UIColor.lightGray
 

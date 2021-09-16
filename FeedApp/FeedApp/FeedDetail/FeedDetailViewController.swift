@@ -1,8 +1,8 @@
 //
-//  FeedsViewController.swift
+//  FeedDetailViewController.swift
 //  FeedApp
 //
-//  Created by Domagoj on 15.09.2021..
+//  Created by Domagoj on 16.09.2021..
 //
 
 import UIKit
@@ -10,22 +10,22 @@ import SnapKit
 import RxSwift
 import RxDataSources
 
-class FeedsViewController: UIViewController {
-
+class FeedDetailViewController: UIViewController {
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.estimatedRowHeight = 200
+        tableView.separatorStyle = .singleLine
+        tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(RSSFeedTableViewCell.self, forCellReuseIdentifier: reuseId)
+        tableView.register(FeedItemTableViewCell.self, forCellReuseIdentifier: reuseId)
         return tableView
     }()
 
-    private let reuseId = "FeedModelCellId"
+    private let reuseId = "FeedItemCellId"
     private let disposeBag = DisposeBag()
-    private let viewModel: FeedsViewModel
+    private let viewModel: FeedDetailViewModel
 
-    init(viewModel: FeedsViewModel) {
+    init(viewModel: FeedDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,9 +43,9 @@ class FeedsViewController: UIViewController {
     }
 }
 
-// MARK: - UI
+// MARK: UI
 
-private extension FeedsViewController {
+private extension FeedDetailViewController {
 
     func configureUI() {
         view.addSubview(tableView)
@@ -55,16 +55,16 @@ private extension FeedsViewController {
 
 // MARK: - Bindings
 
-private extension FeedsViewController {
+private extension FeedDetailViewController {
 
     func configureBindings() {
-        viewModel.feeds.drive(tableView.rx.items(cellIdentifier: reuseId)) { _, feedModel, cell in
-            guard let cell = cell as? RSSFeedTableViewCell else { return }
-            cell.setup(with: feedModel)
+        viewModel.items.drive(tableView.rx.items(cellIdentifier: reuseId)) { _, feedItem, cell in
+            guard let cell = cell as? FeedItemTableViewCell else { return }
+            cell.setup(with: feedItem)
         }.disposed(by: disposeBag)
 
-        tableView.rx.modelSelected(FeedModel.self)
-            .bind(to: viewModel.feedSelectionPublisher)
+        tableView.rx.modelSelected(FeedItem.self)
+            .bind(to: viewModel.feedSelectedPublisher)
             .disposed(by: disposeBag)
 
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in

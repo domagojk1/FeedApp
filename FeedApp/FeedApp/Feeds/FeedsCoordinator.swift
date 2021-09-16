@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {
+class FeedsCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
@@ -16,8 +16,13 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let feedsVC = FeedsViewController.instantiate()
-        feedsVC.viewModel = FeedsViewModel(feedsDataSource: FeedsDataSource())
+        let viewModel = FeedsViewModel(feedsDataSource: FeedsDataSource(), coordinator: self)
+        let feedsVC = FeedsViewController(viewModel: viewModel)
         navigationController.pushViewController(feedsVC, animated: false)
+    }
+
+    func navigate(to feedModel: FeedModel) {
+        let coordinator = FeedDetailCoordinator(navigationController: navigationController, feedModel: feedModel)
+        coordinator.start()
     }
 }

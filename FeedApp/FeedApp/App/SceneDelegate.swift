@@ -10,13 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private var mainCoordinator: MainCoordinator?
+    private var mainCoordinator: FeedsCoordinator?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         let navigationController = UINavigationController()
-        mainCoordinator = MainCoordinator(navigationController: navigationController)
+        mainCoordinator = FeedsCoordinator(navigationController: navigationController)
         mainCoordinator?.start()
 
         let window = UIWindow(windowScene: scene)

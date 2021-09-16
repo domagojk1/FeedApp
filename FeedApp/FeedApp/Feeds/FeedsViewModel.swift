@@ -13,23 +13,27 @@ import RxCocoa
 final class FeedsViewModel {
 
     let feeds: Driver<[FeedModel]>
-    let feedSelectionPublisher = PublishSubject<Int>()
+    let feedSelectionPublisher = PublishSubject<FeedModel>()
+    let title = "RSS Feeds"
 
+    private let coordinator: FeedsCoordinator
     private let feedsDataSource: FeedsDataSource
     private let disposeBag = DisposeBag()
 
-    init(feedsDataSource: FeedsDataSource) {
+    init(feedsDataSource: FeedsDataSource, coordinator: FeedsCoordinator) {
         self.feedsDataSource = feedsDataSource
+        self.coordinator = coordinator
+
         feeds = feedsDataSource.load(feeds: RSSFeed.allCases).asDriver(onErrorJustReturn: [])
 
-        Driver.combineLatest(feeds, feedSelectionPublisher.asDriver(onErrorDriveWith: .empty())) { ($0, $1) }
-            .drive(onNext: { [weak self] (feedModels, selectedIndex) in
-                self?.didSelect(feedModel: feedModels[selectedIndex])
-            })
-            .disposed(by: disposeBag)
+        feedSelectionPublisher
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] model in
+                self?.didSelect(feedModel: model)
+            }).disposed(by: disposeBag)
     }
 
     private func didSelect(feedModel: FeedModel) {
-        print("didSelect \(feedModel)")
+        coordinator.navigate(to: feedModel)
     }
 }
